@@ -2,6 +2,7 @@
 using HotChocolate.Resolvers;
 using Redis.OM;
 using Redis.OM.Searching;
+using System.Linq.Expressions;
 
 namespace GraphQL
 {
@@ -15,6 +16,7 @@ namespace GraphQL
             _customers = (RedisCollection<CustomerModel>)redisConnectionProvider.RedisCollection<CustomerModel>();
         }
 
+        [UseOffsetPaging()]
         [UsePaging(IncludeTotalCount = true, MaxPageSize = 10)]
         [UseProjection]
         [UseFiltering]
